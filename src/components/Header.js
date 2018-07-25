@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 
+import{
+    Link
+} from 'react-router-dom'
+
 class Header extends Component {
 
     render() {
         return (
-            <h1>{this.props.title}</h1>
+            <div>
+
+                <Link class="btn-link-btn" to="/">Home</Link>
+                <Link class="btn-link-btn" to="/income">Income</Link>
+
+            </div>
         );
     }
 }

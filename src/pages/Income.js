@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 
-import Header from '../components/Header.js';
-import Footer from '../components/Footer.js';
+import './Income.css';
 
+import Title from '../components/Title'
 
 class Income extends Component {
+    handleAddIncome(e){
+
+    }
+
     render() {
         return (
-            <div>
-                <Header title={"This is the Income Page"}/>
-
-                <Footer />
+            <div className={"Root"}>
+                <Title title={"Income"} />
+                <button className={"add-button"} onclick={this.handleAddIncome.bind(this)}>ADD</button>
             </div>
         );
     }

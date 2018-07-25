@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import './App.css';
 
-import Header from '../components/Header.js';
-import Footer from '../components/Footer.js';
+import Overview from './Overview';
+import Income from './Income';
+import Expenses from './Expenses';
 
 
 class App extends Component {
   render() {
     return (
         <div>
-            <Header title={"This is main page"}/>
             <div>
-
+                <Overview className={"Overview"}/>
+                <hr/>
+                <Income class="Income" className={"Income"}/>
+                <hr/>
+                <Expenses className={"Expenses"}/>
             </div>
-
-
-            <Footer />
         </div>
     );
   }
