@@ -32,7 +32,7 @@
     top:50px;
     bottom:50px;
 
-    padding:2px; /* For the border of the components... :/ Remove later...*/
+    padding:10px; /* For the border of the components... :/ Remove later...*/
 
     overflow:auto;
 
