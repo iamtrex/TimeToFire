@@ -10,9 +10,12 @@ class Income extends Component {
         super();
         this.state = {showIncome: false};
     }
+
+
     handleAddIncome(e){
         this.setState({showIncome: true});
     }
+
 
     render() {
         return (
