@@ -7,15 +7,14 @@ class AddIncome extends Component {
 
     constructor(){
         super();
-        this.state={incomeType:''
+        this.state={
+            incomeType:''
 
         };
 
     }
 
     handleIncomeTypeChange(e){
-        //alert(this.refs.income.value());
-        //alert(e.target.value);
 
         this.setState({
             incomeType:e.target.value
@@ -24,8 +23,10 @@ class AddIncome extends Component {
     }
 
     handleSubmit(e){
-        //alert("Submitted");
-        alert(this.refs.income.value);
+        //alert(this.refs.income.value);
+
+        console.log(this.refs.aif.state.salary);
+        this.props.addIncome(/*income here*/);
         e.preventDefault();
     }
 
@@ -34,8 +35,9 @@ class AddIncome extends Component {
             <div className={"Root"}>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div>
-                        <p>Add New Income</p>
-                        <select ref="income" onChange={this.handleIncomeTypeChange.bind(this)}>
+                        Name: <input name="name" type={"text"}></input>
+                        <br/>
+                        Income Type: <select ref="income" onChange={this.handleIncomeTypeChange.bind(this)}>
                             <option selected value={"default"}>Select One</option>
                             <option value={"passive"}>Passive</option>
                             <option value={"active"}>Active</option>
@@ -43,7 +45,7 @@ class AddIncome extends Component {
                     </div>
 
                     {this.state.incomeType === 'passive' ? <PassiveIncomeForm/> : null}
-                    {this.state.incomeType === 'active' ?  <ActiveIncomeForm/> : null}
+                    {this.state.incomeType === 'active' ?  <ActiveIncomeForm ref={"aif"}/> : null}
 
                     <input type={'submit'} value={"Done"} />
                 </form>

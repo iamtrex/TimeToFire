@@ -1,4 +1,24 @@
 .Root{
-   width: 100%;
-    border: 1px solid blue
+    width: 100%;
 }
+
+.inline{
+    display:inline;
+}
+
+.Active, .Passive, .Portfolio{
+    margin:5px;
+}
+
+/*
+.Active{
+    margin:5px;
+}
+
+.Passive{
+    margin:5px;
+}
+
+.Portfolio{
+    margin:5px;
+}*/
