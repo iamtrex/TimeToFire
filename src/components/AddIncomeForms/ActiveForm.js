@@ -67,39 +67,36 @@ class ActiveForm extends Component {
 
     render() {
         return(
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                <div>
-                    Active Income
-                    <br/>
-                    Salary Rate: $ <input onChange={this.handleSalaryChange.bind(this)} id="salary" type={"number"}></input>
-                    <p> per </p>
-                    <select id={"salary_rate"} onChange={this.handleChangeRate.bind(this)}>
-                        <option selected value={"year"}>Year</option>
-                        <option value={"month"}>Month</option>
-                        <option value={"week"}>Week</option>
-                        <option value={"day"}>Day</option>
-                        <option value={"hour"}>Hour</option>
-                    </select>
-                    <br/>
+            <div>
+                Active Income
+                <br/>
+                Salary Rate: $ <input onChange={this.handleSalaryChange.bind(this)} id="salary" type={"number"}></input>
+                <p> per </p>
+                <select id={"salary_rate"} onChange={this.handleChangeRate.bind(this)}>
+                    <option selected value={"year"}>Year</option>
+                    <option value={"month"}>Month</option>
+                    <option value={"week"}>Week</option>
+                    <option value={"day"}>Day</option>
+                    <option value={"hour"}>Hour</option>
+                </select>
+                <br/>
 
-                    {this.state.showFreq ?
-                        <div>
-                            Frequency: <input onChange={this.handleSalaryChange.bind(this)} id="frequency" type={"number"}></input> {this.state.rate}s
-                            <p> per </p>
-                            <select onChange={this.handleSalaryChange.bind(this)} id={"frequency_rate"}>
-                                <option selected value={"year"}>Year</option>
-                                <option value={"month"}>Month</option>
-                                <option value={"week"}>Week</option>
-                                <option value={"day"}>Day</option>
-                            </select>
-                        </div> :
-                        null
-                    }
+                {this.state.showFreq ?
+                    <div>
+                        Frequency: <input onChange={this.handleSalaryChange.bind(this)} id="frequency" type={"number"}></input> {this.state.rate}s
+                        <p> per </p>
+                        <select onChange={this.handleSalaryChange.bind(this)} id={"frequency_rate"}>
+                            <option selected value={"year"}>Year</option>
+                            <option value={"month"}>Month</option>
+                            <option value={"week"}>Week</option>
+                            <option value={"day"}>Day</option>
+                        </select>
+                    </div> :
+                    null
+                }
 
-                    Yearly Salary = {this.state.salary}
-
-                </div>
-            </form>
+                Yearly Salary = {this.state.salary}
+            </div>
         );
     }
 }

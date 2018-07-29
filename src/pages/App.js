@@ -4,6 +4,7 @@ import './App.css';
 import Overview from './Overview';
 import Income from './Income';
 import Expenses from './Expenses';
+import ReturnsPortfolio from './ReturnsPortfolio';
 
 
 class App extends Component {
@@ -16,6 +17,8 @@ class App extends Component {
                 <Income class="Income" className={"Income"}/>
                 <hr/>
                 <Expenses className={"Expenses"}/>
+                <hr/>
+                <ReturnsPortfolio className={"ReturnsPortfolio"}/>
             </div>
         </div>
     );

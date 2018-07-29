@@ -7,11 +7,19 @@ import AddIncome from '../components/AddIncome'
 import Active from '../components/IncomeTypes/Active'
 import Passive from '../components/IncomeTypes/Passive'
 import Portfolio from '../components/IncomeTypes/Portfolio'
+import ActiveForm from '../components/AddIncomeForms/ActiveForm'
+import PassiveForm from '../components/AddIncomeForms/PassiveForm'
+import PortfolioForm from '../components/AddIncomeForms/PortfolioForm'
+
 class Income extends Component {
 
     constructor(){
         super();
-        this.state = {showIncome: false,
+        this.state = {
+            showAddIncome: false,
+            addIncomeType: 'default',
+            addIncomeName: '',
+
             incomeElts: [
                 {
                     type:'active',
@@ -45,19 +53,71 @@ class Income extends Component {
 
 
     handleAddButton(e){
-        let curr = this.state.showIncome;
-        this.setState({showIncome: !curr});
+        let curr = this.state.showAddIncome;
+        this.setState({showAddIncome: !curr});
+
+    }
+
+    handleAddIncomeNameChange(e){
+        this.setState({
+            name:e.target.value
+        });
 
     }
 
     /**
      * Adds a new income
      */
-    handleAddIncome(incomeElt){
-        this.setState((prevState)=>({
-           incomeElts: [...prevState.incomeElts, incomeElt]
+    handleAddIncome(e){
+
+        if(this.state.addIncomeType === 'default'){
+            alert("Must choose an income type!");
+            e.preventDefault();
+            return;
+        }
+
+        let incomeElt;
+        let name = this.state.name;
+        if(name === ''){
+            //No name!
+            alert("Income must have a name");
+        }
+
+        switch(this.state.addIncomeType){
+            case 'passive':
+
+                break;
+            case 'active':
+                incomeElt={
+                    type:'active',
+                    name:name,
+                    amount:this.refs.activeForm.state.salary
+                };
+                break;
+            case 'portfolio':
+                break;
+        }
+
+        this.setState(prevState => ({
+            incomeElts: [...prevState.incomeElts, incomeElt],
+            showAddIncome: false, //Stop showing form.
+            addIncomeType: 'default',
+            name: ''
         }));
+
+        //console.log(this.state.incomeElts);
+
+        e.preventDefault();
+
     }
+
+    handleIncomeTypeChange(e){
+        this.setState({
+            addIncomeType:e.target.value
+        });
+
+    }
+
 
 
     render() {
@@ -90,6 +150,8 @@ class Income extends Component {
         return (
             <div className={"Root"}>
                 <Title className={"inline"} title={"Income"} />
+
+
                 <Title  title={"Active"} />
                     {activeElts}
                 <Title title={"Passive"} />
@@ -98,12 +160,29 @@ class Income extends Component {
                 <Title title={"Portfolio"} />
                     {portfolioElts}
 
-                {this.state.showIncome?
+                {this.state.showAddIncome?
                     <button className={"add-button inline"} onClick={this.handleAddButton.bind(this)}>CANCEL</button> :
                     <button className={"add-button inline"} onClick={this.handleAddButton.bind(this)}>ADD</button> }
 
-                {this.state.showIncome ? <AddIncome addIncome={this.handleAddIncome.bind(this)} /> : null}
+                {this.state.showAddIncome ?
+                    <form onSubmit={this.handleAddIncome.bind(this)}>
+                        <div className={"addIncomeForm"}>
+                            Name: <input id="incomeName" type={"text"} onChange={this.handleAddIncomeNameChange.bind(this)}></input>
 
+                            Income Type:
+                            <select ref="income-type" onChange={this.handleIncomeTypeChange.bind(this)}>
+                                <option selected value={"default"}>Select One</option>
+                                <option value={"passive"}>Passive</option>
+                                <option value={"active"}>Active</option>
+                                <option value={"portfolio"}>Portfolio</option>
+                            </select>
+                            {this.state.addIncomeType === 'passive' ? <PassiveForm ref={"passiveForm"} addIncome={this.handleAddIncome.bind(this)} /> : null}
+                            {this.state.addIncomeType === 'active' ? <ActiveForm ref={"activeForm"} addIncome={this.handleAddIncome.bind(this)} /> : null}
+                            {this.state.addIncomeType === 'portfolio' ? <PortfolioForm ref={"portfolioForm"} addIncome={this.handleAddIncome.bind(this)} /> : null}
+
+                        </div>
+                        <input type={'submit'} value={"Add Income!"} />
+                    </form> : null}
             </div>
         );
     }
